@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import s from './Todolist.module.css'
 import {FilterValuesType} from "../../App";
 
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean
