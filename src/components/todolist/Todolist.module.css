@@ -2,9 +2,17 @@
     font-family: 'Comfortaa', cursive;
 }
 .title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.titleText {
     font-family: 'Pacifico', cursive;
     font-size: 30px;
     letter-spacing: 2px;
+}
+.removeTodo {
+
 }
 .input {
 

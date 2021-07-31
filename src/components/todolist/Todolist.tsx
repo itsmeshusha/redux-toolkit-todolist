@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import s from './Todolist.module.css'
 import {FilterValuesType} from "../../App";
+import {RiDeleteBin2Line, TiDeleteOutline} from "react-icons/all";
 
 export type TaskType = {
     id: string
@@ -47,15 +48,15 @@ export const Todolist = (props: PropsType) => {
     return (
         <div className={s.container}>
             <div className={s.title}>
-                {props.title}
-                <button onClick={() => props.removeTodolist(props.id)}>X</button>
+                <span className={s.titleText}>{props.title}</span>
+                <TiDeleteOutline size={25} onClick={() => props.removeTodolist(props.id)} />
             </div>
             <input className={error ? s.error : s.input}
                    value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
             />
-            <button className={s.button} onClick={addTaskHandler}>Add</button>
+            <button className={s.button} onClick={addTaskHandler}>Add Task</button>
             {error && <div className={s.errorMessage}>{error}</div>}
             {props.tasks.map(el => {
                 const onClickHandler = () => props.removeTask(el.id, props.id)
@@ -66,7 +67,7 @@ export const Todolist = (props: PropsType) => {
                 return <div key={el.id} className={el.isDone ? s.isDone : ''}>
                     <input type={'checkbox'} checked={el.isDone} onChange={onChangeStatusHandler}/>
                     <span>{el.title}</span>
-                    <button onClick={onClickHandler}>X</button>
+                    <RiDeleteBin2Line onClick={onClickHandler} />
                 </div>
                 })
             }
