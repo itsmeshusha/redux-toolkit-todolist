@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100vh;
+  background-image: linear-gradient(#ffd1d4, #ff9b9f, #480bf7);
 }
 .error {
   border: 1px solid red;
