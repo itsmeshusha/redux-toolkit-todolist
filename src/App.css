@@ -1,17 +1,8 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   height: 100vh;
   background-image: linear-gradient(#ffd1d4, #ff9b9f, #480bf7);
 }
-.error {
-  border: 1px solid red;
-}
-.error-message {
-  color: red;
-}
-.active-filter {
-  background-color: pink;
-}
-.is-done {
-  opacity: 0.5;
-}
+

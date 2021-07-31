@@ -1,0 +1,23 @@
+.container {
+    font-family: 'Comfortaa', cursive;
+}
+.title {
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+.input {
+
+}
+.error {
+    border: 1px solid red;
+}
+.errorMessage {
+    color: red;
+}
+.activeFilter {
+    background-color: pink;
+}
+.isDone {
+    opacity: 0.5;
+}
