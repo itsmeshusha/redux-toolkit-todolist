@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import s from './Todolist.module.css'
 import {FilterValuesType} from "../../App";
 import {RiDeleteBin2Line, TiDeleteOutline} from "react-icons/all";
-import {AddItemForm} from "../AddItemForm/AddItemForm";
+import {AddItemForm} from "../addItemForm/AddItemForm";
+import {EditableSpan} from "../editableSpan/EditableSpan";
 
 export type TaskType = {
     id: string
@@ -19,6 +20,8 @@ type PropsType = {
     addTask: (title: string, todolistId: string) => void
     changeStatus: (id: string, isDone: boolean, todolistId: string) => void
     removeTodolist: (id: string) => void
+    changeTaskTitle: (id: string, newTitle: string, todolistId: string) => void
+    changeTodolistTitle: (id: string, title: string) => void
 }
 
 export const Todolist = (props: PropsType) => {
@@ -30,10 +33,17 @@ export const Todolist = (props: PropsType) => {
     const onActiveClickHandler = () => props.changeFilter('active', props.id)
     const onCompletedClickHandler = () => props.changeFilter('completed', props.id)
 
+    const changeTodolistTitle = (title: string) => {
+        props.changeTodolistTitle(props.id, title);
+    }
+
     return (
         <div className={s.container}>
             <div className={s.titleContainer}>
-                <span className={s.titleText}>{props.title}</span>
+                <span className={s.titleText}>
+                    <EditableSpan title={props.title} onChange={changeTodolistTitle} />
+                </span>
+
                 <TiDeleteOutline size={25} onClick={() => props.removeTodolist(props.id)}/>
             </div>
 
@@ -44,12 +54,17 @@ export const Todolist = (props: PropsType) => {
                 const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                     props.changeStatus(el.id, e.currentTarget.checked, props.id)
                 }
+                const onChangeTaskTitleHandler = (newTitle: string) => {
+                    props.changeTaskTitle(el.id, newTitle, props.id)
+                }
 
                 return <div key={el.id} className={el.isDone ? s.isDone : s.tasksContainer}>
                     <span className={s.taskItem}>
                         <input type={'checkbox'} checked={el.isDone} onChange={onChangeStatusHandler}/>
                     </span>
-                    <span className={s.taskItem}>{el.title}</span>
+                    <span className={s.taskItem}>
+                        <EditableSpan title={el.title} onChange={onChangeTaskTitleHandler} />
+                    </span>
                     <span className={s.taskItem}>
                        <RiDeleteBin2Line size={20} onClick={onClickHandler}/>
                     </span>
