@@ -38,7 +38,7 @@ export const AddItemForm = (props: PropsType) => {
                     />
                 </span>
                 <span className={s.addTaskItem}>
-                    <button className={s.button} onClick={addItemHandler}>Add Task</button>
+                    <button className={s.button} onClick={addItemHandler}>Add</button>
                 </span>
             </div>
             {error && <div className={s.errorMessage}>{error}</div>}

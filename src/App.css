@@ -1,7 +1,9 @@
 .App {
+  font-family: 'Comfortaa', cursive;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
   height: 100vh;
   background-image: linear-gradient(#ffd1d4, #ff9b9f, #480bf7);
 }
