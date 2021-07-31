@@ -1,7 +1,7 @@
 .container {
     font-family: 'Comfortaa', cursive;
 }
-.title {
+.titleContainer {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -11,20 +11,54 @@
     font-size: 30px;
     letter-spacing: 2px;
 }
-.removeTodo {
-
+.addTaskContainer {
+    display: flex;
+    align-items: center;
+}
+.addTaskItem {
+    padding: 4px;
 }
 .input {
-
+    font-family: 'Comfortaa', cursive;
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid #ccc
+}
+.button {
+    font-family: 'Comfortaa', cursive;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+}
+.tasksContainer {
+}
+.taskItem {
+    padding: 3px;
 }
 .error {
+    font-family: 'Comfortaa', cursive;
+    border-radius: 5px;
+    padding: 10px;
     border: 1px solid red;
 }
 .errorMessage {
     color: red;
+    padding: 4px;
+}
+.filters {
+    display: flex;
+    align-items: center;
+}
+.filterItem {
+    padding: 2px;
 }
 .activeFilter {
-    background-color: pink;
+    background-color: #ffd1d4;
+    font-family: 'Comfortaa', cursive;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
 }
 .isDone {
     opacity: 0.5;

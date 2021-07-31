@@ -28,7 +28,7 @@ export const Todolist = (props: PropsType) => {
         setTitle(e.currentTarget.value)
     }
     const addTaskHandler = () => {
-        if(title.trim() !== '') {
+        if (title.trim() !== '') {
             props.addTask(title, props.id)
             setTitle("")
         } else {
@@ -47,16 +47,23 @@ export const Todolist = (props: PropsType) => {
 
     return (
         <div className={s.container}>
-            <div className={s.title}>
+            <div className={s.titleContainer}>
                 <span className={s.titleText}>{props.title}</span>
-                <TiDeleteOutline size={25} onClick={() => props.removeTodolist(props.id)} />
+                <TiDeleteOutline size={25} onClick={() => props.removeTodolist(props.id)}/>
             </div>
-            <input className={error ? s.error : s.input}
-                   value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-            />
-            <button className={s.button} onClick={addTaskHandler}>Add Task</button>
+            <div className={s.addTaskContainer}>
+                <span className={s.addTaskItem}>
+                    <input className={error ? s.error : s.input}
+                           value={title}
+                           onChange={onChangeHandler}
+                           onKeyPress={onKeyPressHandler}
+                    />
+                </span>
+                <span className={s.addTaskItem}>
+                    <button className={s.button} onClick={addTaskHandler}>Add Task</button>
+                </span>
+            </div>
+
             {error && <div className={s.errorMessage}>{error}</div>}
             {props.tasks.map(el => {
                 const onClickHandler = () => props.removeTask(el.id, props.id)
@@ -64,16 +71,34 @@ export const Todolist = (props: PropsType) => {
                     props.changeStatus(el.id, e.currentTarget.checked, props.id)
                 }
 
-                return <div key={el.id} className={el.isDone ? s.isDone : ''}>
-                    <input type={'checkbox'} checked={el.isDone} onChange={onChangeStatusHandler}/>
-                    <span>{el.title}</span>
-                    <RiDeleteBin2Line onClick={onClickHandler} />
+                return <div key={el.id} className={el.isDone ? s.isDone : s.tasksContainer}>
+                    <span className={s.taskItem}>
+                        <input type={'checkbox'} checked={el.isDone} onChange={onChangeStatusHandler}/>
+                    </span>
+                    <span className={s.taskItem}>{el.title}</span>
+                    <span className={s.taskItem}>
+                       <RiDeleteBin2Line size={20} onClick={onClickHandler}/>
+                    </span>
                 </div>
-                })
+            })
             }
-            <button className={props.filter === 'all' ? s.activeFilter : s.button} onClick={onAllClickHandler}>All</button>
-            <button className={props.filter === 'active' ? s.activeFilter : s.button} onClick={onActiveClickHandler}>Active</button>
-            <button className={props.filter === 'completed' ? s.activeFilter: s.button} onClick={onCompletedClickHandler}>Completed</button>
+            <div className={s.filters}>
+                <span className={s.filterItem}>
+                    <button className={props.filter === 'all' ? s.activeFilter : s.button}
+                            onClick={onAllClickHandler}>All</button>
+                </span>
+                <span className={s.filterItem}>
+                    <button className={props.filter === 'active' ? s.activeFilter : s.button}
+                            onClick={onActiveClickHandler}>Active
+                </button>
+                </span>
+                <span className={s.filterItem}>
+                    <button className={props.filter === 'completed' ? s.activeFilter : s.button}
+                            onClick={onCompletedClickHandler}>Completed
+                </button>
+                </span>
+            </div>
+
         </div>
     )
 }
